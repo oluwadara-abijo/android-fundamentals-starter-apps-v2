@@ -18,6 +18,7 @@ package com.example.android.SimpleCalc;
 
 import android.test.suitebuilder.annotation.SmallTest;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,6 +54,52 @@ public class CalculatorTest {
         assertThat(resultAdd, is(equalTo(2d)));
     }
 
+    @Test
+    public void addTwoNumbersNegative () {
+        double resultAdd = mCalculator.add(-1d, 2d);
+        assertThat(resultAdd, is(equalTo(1d)));
 
+    }
 
+    @Test
+    public void addTwoNumbersFloats () {
+        double resultAdd = mCalculator.add(1.11f, 1.11d);
+        assertThat(resultAdd, is(Matchers.closeTo(2.22, 0.01)));
+    }
+
+    @Test
+    public void subTwoNumbers() {
+        double resultSub = mCalculator.sub(9d, 4d);
+        assertThat(resultSub, is(equalTo(5d)));
+    }
+
+    @Test
+    public void subWorksWithNegativeResults() {
+        double resultSub = mCalculator.sub(2d, 14d);
+        assertThat(resultSub, is(equalTo(-12d)));
+    }
+
+    @Test
+    public void mulTwoNumbers() {
+        double resultMul = mCalculator.mul(3d, 5d);
+        assertThat(resultMul, is(equalTo(15d)));
+    }
+
+    @Test
+    public void mulTwoNumbersZero() {
+        double resultMul = mCalculator.mul(3d, 0d);
+        assertThat(resultMul, is(equalTo(0d)));
+    }
+
+    @Test
+    public void divTwoNumbers() {
+        double resultMul = mCalculator.div(30d, 5d);
+        assertThat(resultMul, is(equalTo(6d)));
+    }
+
+    @Test
+    public void divByZeroThrows() {
+        double resultMul = mCalculator.div(12d, 0d);
+        assertThat(resultMul, is(equalTo(Double.POSITIVE_INFINITY)));
+    }
 }
