@@ -93,13 +93,55 @@ public class CalculatorTest {
 
     @Test
     public void divTwoNumbers() {
-        double resultMul = mCalculator.div(30d, 5d);
-        assertThat(resultMul, is(equalTo(6d)));
+        double resultPow = mCalculator.div(30d, 5d);
+        assertThat(resultPow, is(equalTo(6d)));
     }
 
     @Test
     public void divByZeroThrows() {
-        double resultMul = mCalculator.div(12d, 0d);
-        assertThat(resultMul, is(equalTo(Double.POSITIVE_INFINITY)));
+        double resultPow = mCalculator.div(12d, 0d);
+        assertThat(resultPow, is(equalTo(Double.POSITIVE_INFINITY)));
+    }
+
+    @Test
+    public void powOfTwoNumbers() {
+        double resultPow = mCalculator.pow(3, 3);
+        assertThat(resultPow, is(equalTo(27d)));
+    }
+
+    @Test
+    public void powOfNegativeFirstOperand() {
+        double resultPow = mCalculator.pow(-4, 3);
+        assertThat(resultPow, is(equalTo(-64d)));
+    }
+
+    @Test
+    public void powOfNegativeSecondOperand() {
+        double resultPow = mCalculator.pow(5, -2);
+        assertThat(resultPow, is(equalTo(0.04d)));
+    }
+
+    @Test
+    public void powOfZeroAndPositiveOperand() {
+        double resultPow = mCalculator.pow(0, 4);
+        assertThat(resultPow, is(equalTo(0d)));
+    }
+
+    @Test
+    public void powOfZeroSecondOperand() {
+        double resultPow = mCalculator.pow(6, 0);
+        assertThat(resultPow, is(equalTo(1d)));
+    }
+
+    @Test
+    public void powOfZeroAndNegativeOne() {
+        double resultPow = mCalculator.pow(0, -1);
+        assertThat(resultPow, is(equalTo(Double.POSITIVE_INFINITY)));
+    }
+
+    @Test
+    public void powOfNegativeZeroAndAnyNumber() {
+        double resultPow = mCalculator.pow(-0, 10);
+        assertThat(resultPow, is(equalTo(0d)));
     }
 }
