@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,10 +27,9 @@ import android.widget.TextView;
  * SimpleCalc is the initial version of SimpleCalcTest.  It has
  * a number of intentional oversights for the student to debug/fix,
  * including input validation (no input, bad number format, div by zero)
- *
+ * <p>
  * In addition there is only one (simple) unit test in this app.
  * All the input validation and the unit tests are added as part of the lessons.
- *
  */
 public class MainActivity extends Activity {
 
@@ -119,11 +117,22 @@ public class MainActivity extends Activity {
                 result = String.valueOf(
                         mCalculator.mul(operandOne, operandTwo));
                 break;
+            case POW:
+                result = String.valueOf(
+                        mCalculator.pow(operandOne, operandTwo));
+                break;
             default:
                 result = getString(R.string.computationError);
                 break;
         }
         mResultTextView.setText(result);
+    }
+
+    /**
+     * OnClick method called when the power Button is pressed.
+     */
+    public void onPow(View view) {
+        compute(Calculator.Operator.POW);
     }
 
     /**
